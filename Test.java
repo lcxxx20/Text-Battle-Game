@@ -82,23 +82,48 @@ public class Test {
                         System.out.println("输入角色类型不合法");
                     }
                 }
+                // 这里前面应该是你选好 role1 和 role2 的代码
+                System.out.println("=== 双人对战开始 ===");
+
                 while (true) {
-                System.out.println("请选择你的操作：" );
-                System.out.println("1."+role1.getName()+"攻击"+role2.getName());
-                System.out.println("2."+role2.getName()+"攻击"+role1.getName());
-                System.out.println("0.退出");
-                int  a = sc.nextInt();
-                if(a==0){break;}
-                else if(a==1){role1.attack(role2);}
-                else if(a==2){role2.attack(role1);}
+                    System.out.println("\n请选择你的操作：");
+                    System.out.println("1." + role1.getName() + " 攻击 " + role2.getName());
+                    System.out.println("2." + role2.getName() + " 攻击 " + role1.getName());
+                    System.out.println("0.退出");
+
+                    int a = sc.nextInt();
+
+                    if (a == 0) {
+                        System.out.println("游戏已退出。");
+                        break;
+                    }
+                    else if (a == 1) {
+                        // 玩家1出手
+                        role1.attack(role2);
+
+                        // 【裁判立刻检查】：玩家2死了没？
+                        if (role2.getLife() <= 0) {
+                            System.out.println("💀 " + role2.getName() + " 倒下了！");
+                            System.out.println("🎉 " + role1.getName() + " 获得了最终胜利！");
+                            break; // 游戏结束，跳出循环！
+                        }
+                    }
+                    else if (a == 2) {
+                        // 玩家2出手
+                        role2.attack(role1);
+
+                        // 【裁判立刻检查】：玩家1死了没？
+                        if (role1.getLife() <= 0) {
+                            System.out.println("💀 " + role1.getName() + " 倒下了！");
+                            System.out.println("🎉 " + role2.getName() + " 获得了最终胜利！");
+                            break; // 游戏结束，跳出循环！
+                        }
+                    }
+                    else {
+                        System.out.println("杂鱼，选项都选不对吗~");
+                    }
                 }
-            } else {
-                System.out.println("杂鱼，选项都选不对吗~");
             }
-
-
         }
-
     }
-
 }

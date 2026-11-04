@@ -7,7 +7,7 @@ public class Role {
     char sex;
     int life;
     int LIFE;
-
+int count;
     public Role() {
     }
 
@@ -18,6 +18,7 @@ public class Role {
         int life=random.nextInt(100,200);
         this.life = life;
         this.LIFE=life;
+        this.count=20;
     }
 
     public String getName() {
